@@ -2,8 +2,8 @@
 """
 Class for performing a HESS style 2D fit of muon images
 
-To do:
-    - Deal with astropy untis better, currently stripped and no checks made
+TODO:
+    - Deal with astropy units better, currently stripped and no checks made
     - unit tests
     - create container class for output
 
@@ -21,13 +21,13 @@ class MuonLineIntegrate(object):
     Object for calculating the expected 2D shape of muon image for a given mirror geometry.
     Geometry is passed to the class as a series of points defining the outer edge of the array
     and a set of points defining the shape of the central hole (if present). Muon profiles are
-    then calculated bsed of the line integral along a given axis from the muon impact point.
+    then calculated based of the line integral along a given axis from the muon impact point.
 
     Expected 2D images can then be generated when the pixel geometry is passed to the class.
     """
     def __init__(self, mirror_radius, hole_radius, pixel_width=0.2, oversample_bins = 3):
         """
-        Class initialisation funtion
+        Class initialisation function
         Parameters
         ----------
         mirror_radius: float
@@ -51,7 +51,7 @@ class MuonLineIntegrate(object):
         self.pixel_x = 0
         self.pixel_y = 0
         self.image = 0
-        self.photemit300_600 = 12165.45
+        self.photemit300_600 = 12165.45 #HACK There shouldn't be magic numbers in the code
         self.unit = u.deg
 
     @staticmethod
@@ -82,7 +82,7 @@ class MuonLineIntegrate(object):
     def intersect_circle(self,r, angle):
         """
         Perform line integration along a given axis in the mirror frame given an impact
-        point on the mirrot
+        point on the mirror
         :param impact_x: float
             Impact position on mirror (tilted telescope system)
         :param impact_y: float

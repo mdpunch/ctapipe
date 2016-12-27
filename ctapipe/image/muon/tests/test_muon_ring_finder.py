@@ -12,17 +12,17 @@ def test_ChaudhuriKunduRingFitter():
     XX,YY = np.meshgrid(x,y) * u.deg
     ZZ    = np.zeros_like(XX)
 
-    c_x   = 50*u.deg
-    c_y   = 20*u.deg
+    c_x = 50*u.deg
+    c_y = 20*u.deg
 
-    r     =  np.sqrt((XX-c_x)**2+(YY-c_y)**2) 
+    r   = np.sqrt((XX-c_x)**2+(YY-c_y)**2)
 
     min_r = 10 *u.deg
     max_r = 20 *u.deg
 
     ZZ[(r>min_r) & (r<max_r)] = 1 * u.deg
     output = fitter.fit(XX,YY,ZZ)
-    #print(output)
+    # print(output)
 
     lim_p = 0.05 * u.deg
     lim_r = 1 * u.deg
@@ -40,8 +40,8 @@ def test_ChaudhuriKunduRingFitterHline():
     z = np.full_like(x, 3.1415)                 #Fill intensity array with value
 
     output = fitter.fit(x,y,z)
-    #print(output)
+    # print(output)
 
-    #TODO in muon_ring_fitter decide what to do if unreconstructable ... add Status Flag?
-    assert(output.ring_radius is not np.NaN)
+    # TODO in muon_ring_fitter decide what to do if unreconstructable ... add Status Flag?
+    assert output.ring_radius is not np.NaN
 
